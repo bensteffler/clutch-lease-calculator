@@ -109,12 +109,12 @@ export function VehicleValueInput({
       {unknownValue && (
         <div className="flex items-center justify-between gap-4 bg-gray-50 rounded-lg p-3">
           <span className="text-sm text-gray-600">Get an exact value from Clutch</span>
-          <button
-            type="button"
+          <a
+            href="https://www.clutch.ca/blog/lease-takeover-alternative#offer"
             className="px-4 py-2 text-sm font-medium text-[#FF464C] hover:text-[#e63e43] transition-colors"
           >
             Get my offer →
-          </button>
+          </a>
         </div>
       )}
     </div>

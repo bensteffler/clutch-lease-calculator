@@ -81,13 +81,13 @@ export function Results({ results, province, hasVehicleValue, onCtaClick }: Resu
         <p className="text-sm text-gray-400 text-center mt-4 mb-4">
           Enter your residual value to see results
         </p>
-        <button
-          type="button"
+        <a
+          href="https://www.clutch.ca/blog/lease-takeover-alternative#offer"
           onClick={() => onCtaClick('primary')}
-          className="w-full px-6 py-3.5 bg-[#FF464C] text-white font-medium rounded-full hover:bg-[#e63e43] transition-colors"
+          className="w-full px-6 py-3.5 bg-[#FF464C] text-white font-medium rounded-full hover:bg-[#e63e43] transition-colors text-center block"
         >
           Get my offer
-        </button>
+        </a>
       </div>
     )
   }
@@ -172,13 +172,13 @@ export function Results({ results, province, hasVehicleValue, onCtaClick }: Resu
 
       {/* CTAs */}
       <div className="space-y-3">
-        <button
-          type="button"
+        <a
+          href="https://www.clutch.ca/blog/lease-takeover-alternative#offer"
           onClick={() => onCtaClick('primary')}
-          className="w-full px-6 py-3.5 bg-[#FF464C] text-white font-medium rounded-full hover:bg-[#e63e43] transition-colors"
+          className="w-full px-6 py-3.5 bg-[#FF464C] text-white font-medium rounded-full hover:bg-[#e63e43] transition-colors text-center block"
         >
           {getPrimaryCtaText()}
-        </button>
+        </a>
         <button
           type="button"
           onClick={handleCopySummary}
