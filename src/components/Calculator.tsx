@@ -30,12 +30,12 @@ export function Calculator() {
       <div className="bg-white rounded-xl border border-gray-200 p-6" style={{ overflow: 'visible' }}>
         <CurrencyInput
           id="buyoutAmount"
-          label="Residual value"
+          label="Buyout amount (pre-tax)"
           value={buyoutAmount}
           onChange={handleBuyoutChange}
           placeholder="$ 0"
           required
-          tooltip="The residual value is the price you can buy your vehicle for at the end of your lease. Find this on your lease agreement."
+          tooltip="The total amount to buy out your lease before tax. Contact your leasing company for a buyout quote."
         />
 
         <p className="text-xs text-gray-400 mt-6">
@@ -63,11 +63,11 @@ export function Calculator() {
 
         {buyoutAmount > 0 ? (
           <p className="text-sm text-gray-600 text-center mb-4">
-            Based on {formatCurrency(buyoutAmount)} residual × 13% HST
+            Based on {formatCurrency(buyoutAmount)} buyout × 13% HST
           </p>
         ) : (
           <p className="text-sm text-gray-400 text-center mb-4">
-            Enter your residual value to see results
+            Enter your buyout amount to see results
           </p>
         )}
 
