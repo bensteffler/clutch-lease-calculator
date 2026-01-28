@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Calculator } from '../src/components/Calculator'
-import '../src/app/globals.css'
+import './widget.css'
 
 // Widget entry point
 function ClutchLeaseCalculator() {
