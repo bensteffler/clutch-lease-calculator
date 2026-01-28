@@ -84,7 +84,8 @@ export function Results({ results, province, hasVehicleValue, onCtaClick }: Resu
         <a
           href="https://www.clutch.ca/blog/lease-takeover-alternative#offer"
           onClick={() => onCtaClick('primary')}
-          className="w-full px-6 py-3.5 bg-[#FF464C] text-white font-medium rounded-full hover:bg-[#e63e43] transition-colors text-center block"
+          className="w-full px-6 py-3.5 font-medium rounded-full transition-colors text-center block"
+          style={{ backgroundColor: '#FF464C', color: '#ffffff' }}
         >
           Get my offer
         </a>
@@ -175,7 +176,8 @@ export function Results({ results, province, hasVehicleValue, onCtaClick }: Resu
         <a
           href="https://www.clutch.ca/blog/lease-takeover-alternative#offer"
           onClick={() => onCtaClick('primary')}
-          className="w-full px-6 py-3.5 bg-[#FF464C] text-white font-medium rounded-full hover:bg-[#e63e43] transition-colors text-center block"
+          className="w-full px-6 py-3.5 font-medium rounded-full transition-colors text-center block"
+          style={{ backgroundColor: '#FF464C', color: '#ffffff' }}
         >
           {getPrimaryCtaText()}
         </a>
