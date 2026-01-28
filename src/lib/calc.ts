@@ -36,23 +36,46 @@ export interface CalcResults {
 
 /**
  * Calculate tax savings (tax you avoid by not buying at the dealership)
+ * For mid-lease buyouts, tax is on the full payout (remaining payments + residual)
+ * For end-of-lease buyouts, tax is just on residual
  */
-export function calculateTaxSavings(buyoutAmount: number, taxRate: number): number {
-  return buyoutAmount * taxRate
+export function calculateTaxSavings(
+  buyoutAmount: number,
+  taxRate: number,
+  remainingPayments?: number,
+  monthlyPayment?: number
+): number {
+  // If remaining payments provided, include them in taxable base
+  // This reflects that mid-lease buyouts are taxed on the full payout amount
+  const remainingPaymentsCost = (remainingPayments && monthlyPayment)
+    ? remainingPayments * monthlyPayment
+    : 0
+
+  const taxableAmount = buyoutAmount + remainingPaymentsCost
+  return taxableAmount * taxRate
 }
 
 /**
  * Calculate total buyout cost if keeping the vehicle
  * Includes: buyout + tax + purchase option fee + other fees
+ * For mid-lease buyouts, also includes remaining payments
  */
 export function calculateTotalBuyoutCost(
   buyoutAmount: number,
   taxRate: number,
   purchaseOptionFee: number,
-  otherFees: number
+  otherFees: number,
+  remainingPayments?: number,
+  monthlyPayment?: number
 ): number {
-  const tax = calculateTaxSavings(buyoutAmount, taxRate)
-  return buyoutAmount + tax + purchaseOptionFee + otherFees
+  const remainingPaymentsCost = (remainingPayments && monthlyPayment)
+    ? remainingPayments * monthlyPayment
+    : 0
+
+  const taxableAmount = buyoutAmount + remainingPaymentsCost
+  const tax = taxableAmount * taxRate
+
+  return taxableAmount + tax + purchaseOptionFee + otherFees
 }
 
 /**
@@ -111,8 +134,8 @@ export function calculateNetProceedsRange(
 export function calculate(inputs: CalcInputs): CalcResults {
   const { buyoutAmount, taxRate, purchaseOptionFee, otherFees, vehicleValue, remainingPayments, monthlyPayment } = inputs
 
-  const taxSavings = calculateTaxSavings(buyoutAmount, taxRate)
-  const totalBuyoutCost = calculateTotalBuyoutCost(buyoutAmount, taxRate, purchaseOptionFee, otherFees)
+  const taxSavings = calculateTaxSavings(buyoutAmount, taxRate, remainingPayments, monthlyPayment)
+  const totalBuyoutCost = calculateTotalBuyoutCost(buyoutAmount, taxRate, purchaseOptionFee, otherFees, remainingPayments, monthlyPayment)
   const breakEvenOffer = calculateBreakEvenOffer(buyoutAmount, purchaseOptionFee, otherFees)
   const keepingCostWithTax = totalBuyoutCost // Same as total buyout cost
 
@@ -123,11 +146,12 @@ export function calculate(inputs: CalcInputs): CalcResults {
     keepingCostWithTax,
   }
 
-  // Add remaining lease cost if payments info provided
+  // Add remaining lease cost display if payments info provided
   if (remainingPayments !== undefined && remainingPayments > 0 && monthlyPayment !== undefined && monthlyPayment > 0) {
     const remainingLeaseCost = remainingPayments * monthlyPayment
     results.remainingLeaseCost = remainingLeaseCost
-    results.totalCostIfKeeping = remainingLeaseCost + totalBuyoutCost
+    // Note: totalCostIfKeeping is now just totalBuyoutCost since remaining payments are already included
+    results.totalCostIfKeeping = totalBuyoutCost
   }
 
   // Add vehicle value calculations if provided
