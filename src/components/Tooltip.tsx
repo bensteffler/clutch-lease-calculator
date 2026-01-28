@@ -22,8 +22,8 @@ export function Tooltip({ children, content }: TooltipProps) {
           style={{
             position: 'absolute',
             zIndex: 9999,
-            width: '240px',
-            padding: '8px 12px',
+            width: '260px',
+            padding: '10px 12px',
             fontSize: '13px',
             lineHeight: '1.4',
             color: '#ffffff',
@@ -31,8 +31,7 @@ export function Tooltip({ children, content }: TooltipProps) {
             borderRadius: '8px',
             boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
             top: '100%',
-            left: '50%',
-            transform: 'translateX(-50%)',
+            left: '0',
             marginTop: '8px',
           }}
         >
@@ -41,8 +40,7 @@ export function Tooltip({ children, content }: TooltipProps) {
             style={{
               position: 'absolute',
               bottom: '100%',
-              left: '50%',
-              transform: 'translateX(-50%)',
+              left: '12px',
               borderWidth: '6px',
               borderStyle: 'solid',
               borderColor: 'transparent transparent #1f2937 transparent',

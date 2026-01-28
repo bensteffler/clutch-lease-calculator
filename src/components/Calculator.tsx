@@ -113,7 +113,7 @@ export function Calculator() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
       {/* Left side - Inputs */}
-      <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
+      <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6" style={{ overflow: 'visible' }}>
         <div className="space-y-6">
           {/* Residual Value */}
           <CurrencyInput
