@@ -47,35 +47,6 @@
   padding: 0;
 }
 
-/* Reset div styles */
-.clutch-lease-calculator div {
-  margin: 0;
-  padding: 0;
-}
-
-/* Ensure backgrounds render */
-.clutch-lease-calculator .bg-gray-100 {
-  background-color: #f3f4f6 !important;
-}
-
-.clutch-lease-calculator .bg-white {
-  background-color: #ffffff !important;
-}
-
-.clutch-lease-calculator .bg-gray-50 {
-  background-color: #f9fafb !important;
-}
-
-/* Ensure shadows render */
-.clutch-lease-calculator .shadow-sm {
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
-}
-
-/* Ensure rounded renders */
-.clutch-lease-calculator .rounded-full {
-  border-radius: 9999px !important;
-}
-
 /* Custom input styles */
 .clutch-lease-calculator input[type="number"]::-webkit-inner-spin-button,
 .clutch-lease-calculator input[type="number"]::-webkit-outer-spin-button {

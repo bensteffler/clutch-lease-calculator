@@ -57,27 +57,35 @@ export function VehicleValueInput({
           </Tooltip>
         </span>
 
-        {/* Toggle pills - rounded full */}
-        <div className="flex bg-gray-100 rounded-full p-1">
+        {/* Toggle pills - using inline styles for widget compatibility */}
+        <div style={{ display: 'flex', backgroundColor: '#f3f4f6', borderRadius: '9999px', padding: '4px' }}>
           <button
             type="button"
             onClick={() => handleToggle(true)}
-            className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
-              unknownValue
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
+            style={{
+              padding: '6px 12px',
+              fontSize: '14px',
+              borderRadius: '9999px',
+              transition: 'all 0.2s',
+              backgroundColor: unknownValue ? '#ffffff' : 'transparent',
+              color: unknownValue ? '#111827' : '#6b7280',
+              boxShadow: unknownValue ? '0 1px 2px 0 rgb(0 0 0 / 0.05)' : 'none',
+            }}
           >
             I don&apos;t know
           </button>
           <button
             type="button"
             onClick={() => handleToggle(false)}
-            className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
-              !unknownValue
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
+            style={{
+              padding: '6px 12px',
+              fontSize: '14px',
+              borderRadius: '9999px',
+              transition: 'all 0.2s',
+              backgroundColor: !unknownValue ? '#ffffff' : 'transparent',
+              color: !unknownValue ? '#111827' : '#6b7280',
+              boxShadow: !unknownValue ? '0 1px 2px 0 rgb(0 0 0 / 0.05)' : 'none',
+            }}
           >
             I have an estimate
           </button>
@@ -107,11 +115,15 @@ export function VehicleValueInput({
 
       {/* Clutch CTA when unknown */}
       {unknownValue && (
-        <div className="flex items-center justify-between gap-4 bg-gray-50 rounded-lg p-3">
+        <div
+          className="flex items-center justify-between gap-4 rounded-lg p-3"
+          style={{ backgroundColor: '#f9fafb' }}
+        >
           <span className="text-sm text-gray-600">Get an exact value from Clutch</span>
           <a
             href="https://www.clutch.ca/blog/lease-takeover-alternative#offer"
-            className="px-4 py-2 text-sm font-medium text-[#FF464C] hover:text-[#e63e43] transition-colors"
+            className="px-4 py-2 text-sm font-medium transition-colors"
+            style={{ color: '#FF464C' }}
           >
             Get my offer →
           </a>
