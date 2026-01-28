@@ -18,6 +18,35 @@
   box-sizing: border-box;
 }
 
+/* Reset button styles */
+.clutch-lease-calculator button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Reset anchor styles */
+.clutch-lease-calculator a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reset list styles */
+.clutch-lease-calculator ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clutch-lease-calculator li {
+  margin: 0;
+  padding: 0;
+}
+
 /* Custom input styles */
 .clutch-lease-calculator input[type="number"]::-webkit-inner-spin-button,
 .clutch-lease-calculator input[type="number"]::-webkit-outer-spin-button {

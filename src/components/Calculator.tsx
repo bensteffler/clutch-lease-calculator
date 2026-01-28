@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { ProvinceSelect } from './ProvinceSelect'
 import { CurrencyInput } from './CurrencyInput'
 import { VehicleValueInput } from './VehicleValueInput'
 import { AdvancedOptions } from './AdvancedOptions'
@@ -12,8 +11,10 @@ import { getProvinceByCode, ProvinceInfo } from '@/lib/taxRates'
 import { trackEvent } from '@/lib/analytics'
 
 export function Calculator() {
+  // Ontario only - Clutch can only buy leased vehicles in Ontario
+  const province = 'ON'
+
   // Core inputs
-  const [province, setProvince] = useState('ON')
   const [buyoutAmount, setBuyoutAmount] = useState(0)
   const [buyoutError, setBuyoutError] = useState<string | undefined>()
 
@@ -58,7 +59,7 @@ export function Calculator() {
     })
 
     setResults(calcResults)
-  }, [buyoutAmount, province, provinceInfo.taxRate, purchaseOptionFee, otherFees, unknownVehicleValue, vehicleValue, remainingPayments, monthlyPayment])
+  }, [buyoutAmount, provinceInfo.taxRate, purchaseOptionFee, otherFees, unknownVehicleValue, vehicleValue, remainingPayments, monthlyPayment])
 
   // Track result_viewed when results become valid
   useEffect(() => {
@@ -66,15 +67,9 @@ export function Calculator() {
       trackEvent('result_viewed', { province, buyoutAmount })
       setHasTrackedResultView(true)
     }
-  }, [results, hasTrackedResultView, province, buyoutAmount])
+  }, [results, hasTrackedResultView, buyoutAmount])
 
   // Event handlers with tracking
-  const handleProvinceChange = useCallback((value: string) => {
-    trackEvent('input_started')
-    trackEvent('province_selected', { province: value })
-    setProvince(value)
-  }, [])
-
   const handleBuyoutChange = useCallback((value: number) => {
     trackEvent('input_started')
     if (value > 0) {
@@ -120,9 +115,6 @@ export function Calculator() {
       {/* Left side - Inputs */}
       <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
         <div className="space-y-6">
-          {/* Province */}
-          <ProvinceSelect value={province} onChange={handleProvinceChange} />
-
           {/* Residual Value */}
           <CurrencyInput
             id="buyoutAmount"
