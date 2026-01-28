@@ -151,6 +151,11 @@ export function Calculator() {
 
           {/* Fees info */}
           <FeesInfo />
+
+          {/* Fine print */}
+          <p className="text-xs text-gray-400 pt-2">
+            This calculator provides estimates only. Actual values may vary based on your specific situation.
+          </p>
         </div>
       </div>
 

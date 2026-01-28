@@ -18,9 +18,36 @@ export function Tooltip({ children, content }: TooltipProps) {
     >
       {children}
       {isVisible && (
-        <span className="absolute z-50 w-64 p-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg bottom-full left-1/2 -translate-x-1/2 mb-2">
+        <span
+          style={{
+            position: 'absolute',
+            zIndex: 9999,
+            width: '240px',
+            padding: '8px 12px',
+            fontSize: '13px',
+            lineHeight: '1.4',
+            color: '#ffffff',
+            backgroundColor: '#1f2937',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            top: '100%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            marginTop: '8px',
+          }}
+        >
           {content}
-          <span className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-gray-800" />
+          <span
+            style={{
+              position: 'absolute',
+              bottom: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              borderWidth: '6px',
+              borderStyle: 'solid',
+              borderColor: 'transparent transparent #1f2937 transparent',
+            }}
+          />
         </span>
       )}
     </span>
