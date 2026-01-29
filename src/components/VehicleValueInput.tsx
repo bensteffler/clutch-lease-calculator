@@ -106,8 +106,21 @@ export function VehicleValueInput({
               onFocus={handleFocus}
               onBlur={handleBlur}
               placeholder="$ 0"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 text-right
-                focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+              className="w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 text-right focus:outline-none"
+              style={{
+                border: isFocused ? '2px solid #000000' : '1px solid #e5e7eb',
+                transition: 'border-color 0.15s ease',
+              }}
+              onMouseEnter={(e) => {
+                if (!isFocused) {
+                  e.currentTarget.style.borderColor = '#000000'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isFocused) {
+                  e.currentTarget.style.borderColor = '#e5e7eb'
+                }
+              }}
             />
           </div>
         </div>

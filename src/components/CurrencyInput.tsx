@@ -71,11 +71,22 @@ export function CurrencyInput({
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={placeholder}
-          className={`
-            w-full px-4 py-3 border rounded-lg text-gray-900 placeholder-gray-400 text-right
-            focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent
-            ${error ? 'border-red-500 bg-red-50' : 'border-gray-200'}
-          `}
+          className="w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 text-right focus:outline-none"
+          style={{
+            border: error ? '1px solid #ef4444' : (isFocused ? '2px solid #000000' : '1px solid #e5e7eb'),
+            backgroundColor: error ? '#fef2f2' : '#ffffff',
+            transition: 'border-color 0.15s ease',
+          }}
+          onMouseEnter={(e) => {
+            if (!isFocused && !error) {
+              e.currentTarget.style.borderColor = '#000000'
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (!isFocused && !error) {
+              e.currentTarget.style.borderColor = '#e5e7eb'
+            }
+          }}
         />
         {error && (
           <p className="absolute -bottom-5 right-0 text-xs text-red-600">{error}</p>
