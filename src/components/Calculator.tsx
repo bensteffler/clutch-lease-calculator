@@ -2,11 +2,14 @@
 
 import { useState, useCallback } from 'react'
 import { CurrencyInput } from './CurrencyInput'
+import { VehicleValueInput } from './VehicleValueInput'
 import { formatCurrency } from '@/lib/calc'
 import { trackEvent } from '@/lib/analytics'
 
 export function Calculator() {
   const [buyoutAmount, setBuyoutAmount] = useState(0)
+  const [unknownVehicleValue, setUnknownVehicleValue] = useState(true)
+  const [vehicleValue, setVehicleValue] = useState<number | undefined>()
 
   // Simple calculation: 13% HST on residual value
   const taxRate = 0.13
@@ -18,6 +21,14 @@ export function Calculator() {
       trackEvent('buyout_entered', { amount: value })
     }
     setBuyoutAmount(value)
+  }, [])
+
+  const handleVehicleValueChange = useCallback((value: number | undefined) => {
+    setVehicleValue(value)
+  }, [])
+
+  const handleUnknownValueChange = useCallback((unknown: boolean) => {
+    setUnknownVehicleValue(unknown)
   }, [])
 
   const handleCtaClick = useCallback(() => {
@@ -37,6 +48,15 @@ export function Calculator() {
           required
           tooltip="The total amount to buy out your lease before tax. Contact your leasing company for a buyout quote."
         />
+
+        <div className="mt-6">
+          <VehicleValueInput
+            value={vehicleValue}
+            onChange={handleVehicleValueChange}
+            unknownValue={unknownVehicleValue}
+            onUnknownChange={handleUnknownValueChange}
+          />
+        </div>
 
         <p className="text-xs text-gray-400 mt-6">
           This calculator provides estimates only. Actual savings may vary.
